@@ -1,64 +1,64 @@
-</Oracle Database Archive Log Cleanup Automation Using RMAN
 
-This script automates Oracle Database archived redo log cleanup using Recovery Manager (RMAN).It identifies archived redo logs older than the configured retention period, performs an RMAN crosscheck, removes expired archive log records, and deletes eligible archived logs.The script is designed to simplify routine Oracle database administration and maintain archive log storage efficiently.
+# Oracle Archive Log Management
 
----Features
+## Overview
 
-Automated archived redo log cleanup using RMAN.
-Configurable archive log retention period.
-Oracle SID validation using the ORATAB file.
-Automatic Oracle Home identification.
-Oracle instance availability verification.
-RMAN crosscheck and expired archive log cleanup.
-Execution status and error logging.
-Automatic cleanup of historical execution logs.
-Cron scheduling support.
+This repository contains Oracle Database archive log management scripts and automation utilities using Recovery Manager (RMAN).
 
----Requirements
+The objective is to simplify archive log maintenance, optimize storage utilization, and support routine Oracle Database administration activities.
 
-Oracle Database.
-Oracle Recovery Manager (RMAN).
-Linux/Unix operating system.
-KornShell (ksh).
-Oracle software owner privileges.
+## Scripts
 
----Configuration
+| Script | Description |
+|---|---|
+| `delete_archive.sh` | Automates the deletion of archived redo logs older than the configured retention period using RMAN. |
 
-Update the following variables according to your environment:
+## Features
 
-SCRIPT_HOME: Oracle user's home directory.
-LOG_DIR: Directory used to store execution and RMAN logs.
-ARCHIVE_RETENTIONDAYS: Archived redo log retention period.
-FSRETENTIONDAYS: Execution log retention period.
-Default archive log retention: 7 days.
+- Automated archive log cleanup using RMAN.
+- Configurable archive log retention period.
+- Oracle SID validation using ORATAB.
+- Automatic Oracle Home identification.
+- Oracle instance availability verification.
+- RMAN crosscheck and expired archive log cleanup.
+- Execution logging and error handling.
+- Automated log file cleanup.
 
----Usage
+## Requirements
 
+- Oracle Database
+- Oracle Recovery Manager (RMAN)
+- Linux/Unix operating system
+- KornShell (`ksh`)
+- Oracle software owner privileges
+
+## Usage
+
+```bash
 ./delete_archive.sh -s ORACLE_SID
+```
 
 Example:
 
+```bash
 ./delete_archive.sh -s ORCL
+```
 
----RMAN Operations
+## Scheduling
 
-The script performs the following operations:
- Connects to the target database using OS authentication.
- Crosschecks all archived redo logs.
- Deletes expired archived redo log records.
- Deletes archived redo logs completed before the configured retention threshold.
+Example cron entry to execute the script daily at 2:00 AM:
 
----Cron Scheduling
-Example cron configuration to execute the script daily at 2:00 AM:
+```bash
 0 2 * * * /home/oracle/scripts/bin/delete_archive.sh -s ORCL
+```
 
----Logging
-The script generates separate execution and RMAN logs to facilitate troubleshooting and execution monitoring.
+## Important Considerations
 
----Important Considerations
-Review archive log backup requirements before enabling deletion.Ensure archived redo logs are not required by Data Guard, GoldenGate, or other downstream processes.
-Validate the retention period against database recovery requirements.Test the script in a non-production environment before production deployment.
+- Review archive log backup requirements before deletion.
+- Consider Data Guard and other downstream dependencies.
+- Validate the retention period against recovery requirements.
+- Test in a non-production environment before production deployment.
 
----Disclaimer
+## Disclaimer
 
-This script is provided as a DBA automation example. Review and validate the configuration and deletion criteria before using it in any production environment. />
+These scripts are provided for educational and DBA automation purposes. Review and validate all configurations before using them in production environments.
