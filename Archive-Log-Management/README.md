@@ -1,8 +1,9 @@
-Oracle Database Archive Log Cleanup Automation Using RMAN
+</Oracle Database Archive Log Cleanup Automation Using RMAN
 
 This script automates Oracle Database archived redo log cleanup using Recovery Manager (RMAN).It identifies archived redo logs older than the configured retention period, performs an RMAN crosscheck, removes expired archive log records, and deletes eligible archived logs.The script is designed to simplify routine Oracle database administration and maintain archive log storage efficiently.
 
 ---Features
+
 Automated archived redo log cleanup using RMAN.
 Configurable archive log retention period.
 Oracle SID validation using the ORATAB file.
@@ -14,6 +15,7 @@ Automatic cleanup of historical execution logs.
 Cron scheduling support.
 
 ---Requirements
+
 Oracle Database.
 Oracle Recovery Manager (RMAN).
 Linux/Unix operating system.
@@ -21,6 +23,7 @@ KornShell (ksh).
 Oracle software owner privileges.
 
 ---Configuration
+
 Update the following variables according to your environment:
 
 SCRIPT_HOME: Oracle user's home directory.
@@ -30,12 +33,15 @@ FSRETENTIONDAYS: Execution log retention period.
 Default archive log retention: 7 days.
 
 ---Usage
+
 ./delete_archive.sh -s ORACLE_SID
 
 Example:
+
 ./delete_archive.sh -s ORCL
 
 ---RMAN Operations
+
 The script performs the following operations:
  Connects to the target database using OS authentication.
  Crosschecks all archived redo logs.
@@ -55,4 +61,4 @@ Validate the retention period against database recovery requirements.Test the sc
 
 ---Disclaimer
 
-This script is provided as a DBA automation example. Review and validate the configuration and deletion criteria before using it in any production environment.
+This script is provided as a DBA automation example. Review and validate the configuration and deletion criteria before using it in any production environment. />
