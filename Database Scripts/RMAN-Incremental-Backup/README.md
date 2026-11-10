@@ -135,6 +135,57 @@ These are illustrative schedules and should be adjusted according to the backup 
 - Review archived redo log deletion behavior before enabling automated cleanup.
 - Test the script in a non-production environment before production deployment.
 
+## Execution Flow
+The following flowchart illustrates the execution process of the archive log cleanup script.
+
+
+## Execution Flow
+
+The following flowchart illustrates the RMAN backup automation workflow.
+
+```mermaid
+flowchart TD
+    A([Start]) --> B[Read command-line parameters]
+    B --> C{Valid SID and backup level?}
+
+    C -- No --> X[Display error and exit]
+    C -- Yes --> D[Locate ORATAB]
+
+    D --> E[Identify ORACLE_HOME]
+    E --> F[Verify Oracle instance]
+    F --> G{Instance running?}
+
+    G -- No --> X
+    G -- Yes --> H[Retrieve DB_NAME and DBID]
+
+    H --> I[Check Block Change Tracking]
+    I --> J[Create backup directory]
+    J --> K[Check existing backup process]
+
+    K --> L{Backup already running?}
+    L -- Yes --> X
+    L -- No --> M{Select backup type}
+
+    M -- Level 0 / Level 1 --> N[Configure RMAN]
+    M -- Archive Log Only --> O[Configure archive log backup]
+
+    N --> P[Execute database incremental backup]
+    O --> Q[Execute archive log backup]
+
+    P --> R[Generate RMAN execution log]
+    Q --> R
+
+    R --> S{Backup successful?}
+    S -- No --> T[Record failure and notify]
+    S -- Yes --> U[Record successful backup]
+
+    U --> V[Clean up historical logs and backups]
+    T --> W([End])
+    V --> W
+    X --> W
+```
+
+
 ## Disclaimer
 
 This script is provided as an Oracle DBA automation example. Review all environment-specific configurations, backup policies, and deletion operations before using it in production.
