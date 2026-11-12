@@ -33,14 +33,13 @@ It provides a practical, step-by-step reference for database administrators and 
 - Upgrade execution and monitoring
 - Post-upgrade validation
 - Troubleshooting
-- Execution report template
 
 ## Repository Structure
 
 ```text
 OEM-Agent-Upgrade/
 ├── docs/
-│   ├── OEM_Agent_Upgrade_Handout.pdf
+│   ├── OEM_Agent_Upgrade_Handout_13.4_to_13.5.pdf
 ├── screenshots/
 └── README.md
 ```
