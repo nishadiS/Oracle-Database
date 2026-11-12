@@ -41,8 +41,6 @@ It provides a practical, step-by-step reference for database administrators and 
 OEM-Agent-Upgrade/
 ├── docs/
 │   ├── OEM_Agent_Upgrade_Handout.pdf
-│   ├── OEM_Agent_Upgrade_Handout.docx
-│   └── OEM_Agent_Upgrade_Report_Template.docx
 ├── screenshots/
 └── README.md
 ```
